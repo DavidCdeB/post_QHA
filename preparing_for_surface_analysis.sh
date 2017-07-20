@@ -36,7 +36,7 @@ sed "1s~.*~$var~" dd_3.dat > dd_4.dat
 mv dd_4.dat  solid_1__xyz_blocked_as_T_wise.dat
 
 # Remove blank lines:
-sed '/^\s*$/d' solid_1__blocked_as_T_wise.dat >  bridge.dat
+sed '/^\s*$/d' solid_1__xyz_blocked_as_T_wise.dat >  bridge.dat
 
 # Sort as P-wise:
 grep -v "^#" bridge.dat | sort -k1 -n   > kk.dat

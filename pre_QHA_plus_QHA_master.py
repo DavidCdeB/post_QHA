@@ -16,6 +16,9 @@ import sys
 from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 
+# Remove *.dat, *.eps, *G_vs_P_at_Te
+subprocess.call("./purging_data.sh", shell=True)
+
 
 # Obtaining the number of scelphono outputs in the working directory :
 n_volume = []
@@ -106,13 +109,13 @@ E0_init = float(E0_init)
 B0_prime_init = float(B0_prime_init)
 
 # Now, using these initial candidates,
-# perform the fitting of ALL the volumes gathered on compilation_EOS.dat:
+# perform the fitting of ALL the volumes gathered on compilation_EOS.out:
 
 def BM(x, E0, V0, B0, B0_prime):
 
         return  E0+ (2.293710449E+17)*(1E-21)*( (9.0/16.0)*(V0*B0) * (  (((V0/x)**(2.0/3.0)-1.0)**3.0)*B0_prime  + ((V0/x)**(2.0/3.0)-1)**2  *  (6.0-4.0*(V0/x)**(2.0/3.0))  ))
 
-V, E = np.loadtxt('compilation_EOS.dat', skiprows = 1).T
+V, E = np.loadtxt('compilation_EOS.out', skiprows = 1).T
 
 print 'V = ', V
 print 'E = ', E
@@ -479,10 +482,8 @@ subprocess.call("./sort_Thermo.sh", shell=True)
 
 ### Extracting EL from EOS output:
 #
-path='./'
-template = os.path.join(path, 'compilation_EOS.dat')
-
-
+#path='./'
+#template = os.path.join(path, 'compilation_EOS.out')
 
 #for fname in glob.glob(template):
 #  print fname
@@ -522,7 +523,7 @@ template = os.path.join(path, 'compilation_EOS.dat')
 #print 'VOLUME_EOS = ', VOLUME_EOS
 
 # Using Energy and volume from the EOS outputs (since are fixindex-ed):
-V, E = np.loadtxt('compilation_EOS.dat', skiprows = 1).T
+V, E = np.loadtxt('compilation_EOS.out', skiprows = 1).T
 EL_EOS = E
 VOLUME_EOS = V
 
