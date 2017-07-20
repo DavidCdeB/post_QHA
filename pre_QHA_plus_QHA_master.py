@@ -61,6 +61,14 @@ For example, Calcite I contains 2 formula units in the primitive (rombohedral) c
 n_F_u = float(n_F_u)
 n_F_u = int(float(n_F_u))
 
+# Setting the name of the phase as a raw_input:
+name_of_the_polymorph = raw_input("""
+
+In order to have the graphs conveniently titled,
+please type the name of the polymorph, e.g., Calcite I
+
+""")
+
 
 # Extracting BIRCH-MURNAGHAN 1947 intial candidates from the crystal_EOS.out :
 path='./'
@@ -147,7 +155,7 @@ plt.plot(V, E, 'bo', label='data')
 #plt.ylim()
 plt.xlabel('V (Angstrom$^{3}$)')
 plt.ylabel('E (a.u.)')
-plt.title("Calcite I")
+plt.title("{phase}".format(phase = name_of_the_polymorph))
 plt.legend()
 plt.show()
 
