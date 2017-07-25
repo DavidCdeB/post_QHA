@@ -146,6 +146,9 @@ print 'V0 =  ', V0
 print 'B0 =  ', B0
 print 'B0_prime =  ', B0_prime
 
+print """ This is the E/V fit. Save the image.
+Now close the image to continue the QHA analysis """
+
 # Plotting:
 plt.plot(V, BM(V, *popt), 'r-', label='fit')
 
@@ -572,7 +575,7 @@ PV = P * (VOLUME) * 1E+9 * 1E-30 * (1/(4.3597482E-18))   # Previous formula (cor
 G_with_EL_EOS = EL_EOS + E0 + ET + PV - Temperatures_10_to_2000K * ENTROPY * 1E-3
 
 print """ Plotting ..."""
-
+print """ press <ENTER> """
 
 output_array = np.vstack((VOLUME, P1_in_GPa, P, EL_EOS, E0, ET, ENTROPY, TS, HEAT_CAPACITY, G_with_EL_EOS, Temperatures_10_to_2000K)).T
 np.savetxt('Thermo_functions_with_P_and_G_sorted_with_EL_from_EOS.dat', output_array, header="VOLUME (A^3/CELL)  P1_in_GPa  P (GPa)  \t EL_EOS (AU/CELL) \t  E0 (AU/CELL) \t  ET (AU/CELL) \t  ENTROPY (mHARTREE/(CELL*K))  TS (AU/CELL)  HEAT_CAPACITY (mHARTREE/(CELL*K))  G_with_EL_EOS  (mHARTREE/CELL)   Temperatures (K)", fmt="%0.13f")
